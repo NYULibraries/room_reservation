@@ -56,7 +56,5 @@ group :test do
   gem 'rspec-rails', '~> 2.14.0'
   # Use factory girl for creating models
   gem 'factory_girl_rails', '~> 4.4.0'
-  # Use pry-debugger as the REPL and for debugging
-  gem 'pry-debugger', '~> 0.2.2'
   gem 'pry-remote', '~> 0.1.8'
 end
