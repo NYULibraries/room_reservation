@@ -25,18 +25,19 @@ GIT
       institutions (~> 0.1.1)
 
 GIT
+  remote: git://github.com/NYULibraries/omniauth-nyulibraries.git
+  revision: b1ee24ad2ec66ba829dada927a4b5e7b24cdcdc3
+  specs:
+    omniauth-nyulibraries (1.1.0)
+      omniauth-oauth2 (~> 1.2.0)
+
+GIT
   remote: git://github.com/josh/mustache-rails.git
   revision: d219b298ddc94ca0c4b749125a803f74157ddd03
   specs:
     mustache-rails (0.2.3)
       actionpack (>= 3.1)
       mustache (~> 0.99.4)
-
-PATH
-  remote: ../omniauth-nyulibraries
-  specs:
-    omniauth-nyulibraries (1.1.0)
-      omniauth-oauth2 (~> 1.2.0)
 
 GEM
   remote: https://rubygems.org/
