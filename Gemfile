@@ -40,7 +40,7 @@ gem 'newrelic_rpm', '~> 3.9.5.251'
 # gem 'authlogic', '~> 3.3.0'
 gem 'nyulibraries-assets', :git => 'git://github.com/NYULibraries/nyulibraries-assets.git', :tag => 'v2.1.1'
 gem 'formaggio', github: "NYULibraries/formaggio", tag: 'v1.0.1'
-gem 'omniauth-nyulibraries', path: "../omniauth-nyulibraries"#github: 'NYULibraries/omniauth-nyulibraries'
+gem 'omniauth-nyulibraries', github: 'NYULibraries/omniauth-nyulibraries'
 gem 'devise'
 group :development do
   gem 'progress_bar'
