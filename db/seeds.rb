@@ -23,3 +23,6 @@ rg2.admin_roles = ["global", "shanghai_admin"]
 rg2.title = "Shanghai Undergraduate"
 rg2.code = "shanghai_undergraduate"
 rg2.save
+
+u1 = User.new
+u1.user_attributes = ":nyuidn: N00000000"
