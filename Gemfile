@@ -43,8 +43,7 @@ gem 'devise'
 group :development do
   gem 'progress_bar'
 end
-# gem 'database_cleaner'
-gem 'faker'
+
 group :test do
   #Testing coverage
   gem 'simplecov', :require => false
@@ -56,6 +55,9 @@ group :test do
   gem 'rspec-rails', '~> 2.99.0'
   # Use factory girl for creating models
   gem 'factory_girl_rails', '~> 4.4.1'
+  gem 'faker'
   gem 'pry-remote', '~> 0.1.8'
   gem 'database_cleaner'
 end
+
+gem 'pry', '~> 0.10.1', group: [:development, :test]

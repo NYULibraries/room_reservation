@@ -346,6 +346,7 @@ DEPENDENCIES
   nyulibraries-assets!
   omniauth-nyulibraries!
   progress_bar
+  pry (~> 0.10.1)
   pry-remote (~> 0.1.8)
   rails (~> 3.2.19)
   rspec-rails (~> 2.99.0)
