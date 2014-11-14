@@ -2,7 +2,6 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  include Authpds::Controllers::AuthpdsController
   layout Proc.new{ |controller| (controller.request.xhr?) ? false : "application" }
 
   helper :all # include all helpers, all the time
@@ -15,6 +14,11 @@ class ApplicationController < ActionController::Base
   def set_timezone
     Time.zone = cookies[:timezone] || 'Eastern Time (US & Canada)'
   end
+
+  def new_session_path(scope)
+    new_user_session_path
+  end
+
 
   # For dev purposes
   def current_user_dev
