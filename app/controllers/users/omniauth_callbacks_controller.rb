@@ -1,6 +1,9 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  before_filter :require_valid_omniauth, only: :nyulibraries
   def nyulibraries
-    @user = find_user_with_or_without_provider.first_or_create(attributes_from_omniauth)
+    @user = find_user_with_or_without_provider.first_or_initialize(attributes_from_omniauth)
+    @user.update_attributes(attributes_from_omniauth)
+
     if @user.persisted?
       sign_in_and_redirect @user, event: :authentication
       set_flash_message(:notice, :success, kind: "NYU Libraries") #if is_navigational_format?
@@ -11,7 +14,15 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def find_user_with_or_without_provider
-    @user ||= User.where(username: omniauth.uid, provider: omniauth.provider) || User.where(username: omniauth.uid, provider: "")
+    @find_user_with_or_without_provider ||= (find_user_with_provider.present?) ? find_user_with_provider : find_user_without_provider
+  end
+
+  def find_user_with_provider
+    @find_user_with_provider ||= User.where(username: omniauth.uid, provider: omniauth.provider)
+  end
+
+  def find_user_without_provider
+    @find_user_without_provider ||= User.where(username: omniauth.uid, provider: "")
   end
 
   def require_valid_omniauth
@@ -30,13 +41,28 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @omniauth_provider ||= omniauth.provider
   end
 
+  def user_attributes_from_aleph
+    omniauth_aleph_properties
+  end
+
+  def omniauth_aleph_properties
+    omniauth_aleph_identity.properties
+  end
+
   def attributes_from_omniauth
     {
       email: omniauth_email,
       firstname: omniauth_firstname,
       lastname: omniauth_lastname,
-      institution: omniauth_institution,
-      aleph_id: omniauth_aleph_id
+      institution_code: omniauth_institution,
+      aleph_id: omniauth_aleph_id,
+      patron_status: omniauth_aleph_properties.patron_status,
+      college: omniauth_aleph_properties.college,
+      dept_code: omniauth_aleph_properties.dept_code,
+      department: omniauth_aleph_properties.department,
+      major_code: omniauth_aleph_properties.major_code,
+      major: omniauth_aleph_properties.major,
+      provider:  omniauth.provider
     }
   end
 
@@ -53,7 +79,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def omniauth_institution
-    @omniauth_institution ||= omniauth.extra.institution
+    @omniauth_institution ||= omniauth.extra.institution_code
   end
 
   def omniauth_identities
