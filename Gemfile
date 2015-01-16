@@ -36,26 +36,29 @@ gem 'draper', '~> 1.4.0'
 
 gem 'newrelic_rpm', '~> 3.9.6.257'
 
-gem 'authpds-nyu', :git => 'git://github.com/NYULibraries/authpds-nyu.git', :tag => 'v1.1.2'
 gem 'nyulibraries-assets', :git => 'git://github.com/NYULibraries/nyulibraries-assets.git', :tag => 'v2.1.1'
 gem 'formaggio', github: "NYULibraries/formaggio", tag: 'v1.0.1'
+gem 'omniauth-nyulibraries', github: 'NYULibraries/omniauth-nyulibraries' , tag: "v1.1.2"
+gem 'devise'
 
-group :development do
+group :development, :test do
+  gem 'pry', '~> 0.10.1'
   gem 'progress_bar'
-end
-
-group :test do
+  # Use factory girl for creating models
+  gem 'factory_girl_rails', '~> 4.5.0'
   #Testing coverage
   gem 'simplecov', :require => false
   gem 'simplecov-rcov', :require => false
   gem 'coveralls', '~> 0.7.1', :require => false
-  gem 'vcr', '~> 2.9.3'
-  gem 'webmock', '~> 1.20.4'
+  gem 'webmock', '>= 1.8.0', '< 1.16'
   gem 'timecop', '~> 0.7.1'
   gem 'ruby-prof', '~> 0.15.2'
   gem 'rspec-rails', '~> 2.99.0'
-  # Use factory girl for creating models
-  gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'faker'
+  gem 'pry-remote', '~> 0.1.8'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+  gem 'phantomjs', '>= 1.9.0'
+  gem 'poltergeist', '~> 1.5.0'
+  gem 'selenium-webdriver'
 end
-
-gem 'pry', '~> 0.10.1', group: [:development, :test]
