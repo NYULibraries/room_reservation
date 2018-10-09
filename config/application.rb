@@ -74,7 +74,7 @@ module Rooms
     # Cross Origin Request support
     # Set to a dummy value for tests
     whitelisted_origins = Rails.env.test? ?
-      Eshelf::EXAMPLE_ORIGIN : (Figs.env['ROOMS_ORIGINS'] || [])
+      Rooms::EXAMPLE_ORIGIN : (Figs.env['ROOMS_ORIGINS'] || [])
 
     config.middleware.insert_before 0, Rack::Cors do
       allow do
