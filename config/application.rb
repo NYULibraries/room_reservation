@@ -16,6 +16,7 @@ if defined?(Bundler)
 end
 
 module Rooms
+  EXAMPLE_ORIGIN = 'example.com'
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -69,6 +70,18 @@ module Rooms
     config.active_record.raise_in_transactional_callbacks = true
 
     ActiveSupport::JSON::Encoding.time_precision = 0
+
+    # Cross Origin Request support
+    # Set to a dummy value for tests
+    whitelisted_origins = Rails.env.test? ?
+      Eshelf::EXAMPLE_ORIGIN : (Figs.env['ROOMS_ORIGINS'] || [])
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins *whitelisted_origins
+        resource %r{/api/v1/rooms.json(\?.*)?}, headers: :any, methods: [:get]
+      end
+    end
   end
 end
 
