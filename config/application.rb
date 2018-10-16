@@ -79,7 +79,7 @@ module Rooms
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins *whitelisted_origins
-        resource %r{/api/v1/rooms.json(\?.*)?}, headers: :any, methods: [:get]
+        resource %r{/api/v1/rooms.json(\?.*)?}, headers: :any, methods: [:get, :options]
       end
     end
   end
