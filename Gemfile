@@ -38,7 +38,7 @@ gem 'coffee-script-source', '1.11.0'
 gem 'cancancan', '~> 1.16.0'
 
 # Kaminaro for pagination
-gem 'kaminari', '~> 0.16.1'
+gem 'kaminari', '~> 1.2.1'
 
 # Sorted for making sortable tables
 gem 'sorted', '~> 1.0.1'
